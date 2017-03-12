@@ -28,14 +28,18 @@ export class App extends Component {
     this.props.dispatch(toggleAddPost());
   };
 
+  toggleAddWineSection = () => {
+    this.props.dispatch(toggleAddWine());
+  };
+
   render() {
     return (
       <div>
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
         <div>
           <Helmet
-            title="MERN Starter - Blog App"
-            titleTemplate="%s - Blog App"
+            title="Pairing Menu"
+            titleTemplate="%s - Pairing Menu"
             meta={[
               { charset: 'utf-8' },
               {
@@ -52,6 +56,7 @@ export class App extends Component {
             switchLanguage={lang => this.props.dispatch(switchLanguage(lang))}
             intl={this.props.intl}
             toggleAddPost={this.toggleAddPostSection}
+            toggleAddWine={this.toggleAddWineSection}
           />
           <div className={styles.container}>
             {this.props.children}

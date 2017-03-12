@@ -1,8 +1,9 @@
 export default {
   locale: 'en',
   messages: {
-    siteTitle: 'MERN Starter Blog',
+    siteTitle: 'Pairing Menu',
     addPost: 'Add Post',
+    addWine: 'Add Wine',
     switchLanguage: 'Switch Language',
     twitterMessage: 'We are on Twitter',
     by: 'By',
@@ -11,6 +12,11 @@ export default {
     authorName: 'Author\'s Name',
     postTitle: 'Post Title',
     postContent: 'Post Content',
+    deleteWine: 'Delete Wine',
+    createNewWine: 'Create new post',
+    authorName: 'Author\'s Name',
+    wineTitle: 'Wine Title',
+    wineContent: 'Wine Content',
     submit: 'Submit',
     comment: `user {name} {value, plural,
     	  =0 {does not have any comments}
