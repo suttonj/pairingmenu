@@ -15,4 +15,7 @@ router.route('/foods').post(FoodController.addFood);
 // Delete a food by name
 router.route('/foods/:name').delete(FoodController.deleteFood);
 
+
+router.route('/pairings/:name').get(FoodController.getPairings);
+
 export default router;

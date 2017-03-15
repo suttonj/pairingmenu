@@ -78,6 +78,8 @@ App.propTypes = {
 function mapStateToProps(store) {
   return {
     intl: store.intl,
+    foods: store.foods.data,
+    wines: store.wines.data,
   };
 }
 

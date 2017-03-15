@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const wineSchema = new Schema({
   name: { type: 'String', required: true },
-  attributes: [String],
+  attributes: Object,
   flavors: [String],
-  accepts: [String],
+  accepts: Object,
 });
 
 export default mongoose.model('Wine', wineSchema);

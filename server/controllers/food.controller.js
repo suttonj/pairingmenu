@@ -2,6 +2,7 @@ import Food from '../models/food';
 import slug from 'limax';
 import sanitizeHtml from 'sanitize-html';
 
+import Wine from '../models/wine';
 /**
  * Get all foods
  * @param req
@@ -76,4 +77,35 @@ export function deleteFood(req, res) {
       res.status(200).end();
     });
   });
+}
+
+
+export function getPairings(req, res) {
+	const name = req.params.name;
+	if (!name) {
+		res.status(400).send('Need target value');
+	}
+	//TODO: move this into shared methods file
+	Food.findOne({ name: name }).exec((err, food) => {
+		if (err) {
+      res.status(500).send(err);
+    }
+    const attributesAccepted = food.accepts;
+
+    Wine.find({ $or: [ 
+					{ 'attributes.body': attributesAccepted.body }, 
+					{ 'attributes.sweet': attributesAccepted.sweet },
+					{ 'attributes.acid': attributesAccepted.acid }, 
+					{ 'attributes.fruit': attributesAccepted.fruit },
+					{ 'attributes.oak': attributesAccepted.oak }, 
+					{ 'attributes.tannin': attributesAccepted.tannin }
+    		] })
+    	.exec((err, wines) => {
+    		if (err) {
+		      res.status(500).send(err);
+		    }
+		    console.log(wines.length);
+		    res.json({ wines });
+    	});
+	});
 }
