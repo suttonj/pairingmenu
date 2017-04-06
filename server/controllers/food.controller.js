@@ -3,6 +3,8 @@ import slug from 'limax';
 import sanitizeHtml from 'sanitize-html';
 
 import Wine from '../models/wine';
+import { calculateScore } from '../util/scoring';
+
 /**
  * Get all foods
  * @param req
@@ -90,22 +92,42 @@ export function getPairings(req, res) {
 		if (err) {
       res.status(500).send(err);
     }
-    const attributesAccepted = food.accepts;
+    // const attributesAccepted = food.accepts;
 
-    Wine.find({ $or: [ 
-					{ 'attributes.body': attributesAccepted.body }, 
-					{ 'attributes.sweet': attributesAccepted.sweet },
-					{ 'attributes.acid': attributesAccepted.acid }, 
-					{ 'attributes.fruit': attributesAccepted.fruit },
-					{ 'attributes.oak': attributesAccepted.oak }, 
-					{ 'attributes.tannin': attributesAccepted.tannin }
-    		] })
-    	.exec((err, wines) => {
+    // Wine.find({ $or: [ 
+				// 	{ 'attributes.body': attributesAccepted.body }, 
+				// 	{ 'attributes.sweet': attributesAccepted.sweet },
+				// 	{ 'attributes.acid': attributesAccepted.acid }, 
+				// 	{ 'attributes.fruit': attributesAccepted.fruit },
+				// 	{ 'attributes.oak': attributesAccepted.oak }, 
+				// 	{ 'attributes.tannin': attributesAccepted.tannin }
+    // 		] })
+    // 	.exec((err, wines) => {
+    // 		if (err) {
+		  //     res.status(500).send(err);
+		  //   }
+		  //   console.log(wines.length);
+		  //   res.json({ wines });
+    // 	});
+    Wine.find().exec((err, wines) => {
     		if (err) {
 		      res.status(500).send(err);
 		    }
-		    console.log(wines.length);
-		    res.json({ wines });
+		    const wineScores = [];
+
+		    for (let i = 0; i<wines.length; i++ ) {
+		    	const wine = wines[i];
+		    	const score = calculateScore(food, wine);
+		    	console.log(wine.name + ': ' + score);
+		    	wineScores.push({ wine, score });
+		    }
+
+		    const topWines = 
+		   		wineScores.sort((a, b) => { return a.score < b.score ? 1 : (b.score < a.score ? -1 : 0) })
+		    		.splice(5)
+		    		.reverse();
+
+		    res.json({ topWines });
     	});
 	});
 }
