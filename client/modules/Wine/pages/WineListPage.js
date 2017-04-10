@@ -57,7 +57,6 @@ const mapDispatchToProps = (dispatch) => {
 WineListPage.propTypes = {
   wines: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    attributes: PropTypes.arrayOf(PropTypes.string).isRequired,
     flavors: PropTypes.arrayOf(PropTypes.string).isRequired,
   })).isRequired,
   showAddWine: PropTypes.bool.isRequired,

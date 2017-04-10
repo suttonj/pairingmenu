@@ -13,7 +13,10 @@ export function getWines(req, res) {
     if (err) {
       res.status(500).send(err);
     }
-    res.json({ wines });
+    const retval = wines.map((wine) => {
+    	return { name: wine.name, flavors: wine.flavors };
+    });
+    res.json({ wines: retval });
   });
 }
 

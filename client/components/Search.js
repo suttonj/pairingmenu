@@ -74,13 +74,15 @@ console.dir(this.props);
         suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={this.getSuggestionValue}
+        getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
       />
     );
   }
 }
+
+Search.need = [() => { return fetchFoods(); }];
 
 Search.propTypes = {
 	data: PropTypes.arrayOf(PropTypes.shape({

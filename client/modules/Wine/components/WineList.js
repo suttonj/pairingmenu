@@ -22,7 +22,6 @@ const WineList = (props) => {
 WineList.propTypes = {
   wines: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    attributes: PropTypes.arrayOf(PropTypes.string).isRequired,
     flavors: PropTypes.arrayOf(PropTypes.string).isRequired,
   })).isRequired,
   handleDeleteWine: PropTypes.func.isRequired,

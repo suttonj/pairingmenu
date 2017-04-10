@@ -14,7 +14,7 @@ const WineListItem = (props) => {
         </Link>
       </h3>
       <p className={styles['author-name']}><FormattedMessage id="by" /> {props.wine.name}</p>
-      <p className={styles['wine-desc']}>{props.wine.attributes}</p>
+      <p className={styles['wine-desc']}>{props.wine.flavors}</p>
       <p className={styles['wine-action']}><a href="#" onClick={props.onDelete}><FormattedMessage id="deleteWine" /></a></p>
       <hr className={styles.divider} />
     </div>
@@ -24,7 +24,6 @@ const WineListItem = (props) => {
 WineListItem.propTypes = {
   wine: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    attributes: PropTypes.arrayOf(PropTypes.string).isRequired,
     flavors: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
   onDelete: PropTypes.func.isRequired,
