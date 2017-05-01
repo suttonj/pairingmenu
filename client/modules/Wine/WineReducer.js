@@ -1,5 +1,5 @@
-// Import Actions
-import { ADD_WINE, ADD_WINES, DELETE_WINE } from './WineActions';
+// Import Actions, 
+import { ADD_WINE, ADD_WINES, DELETE_WINE, SET_WINES } from './WineActions';
 
 // Initial State
 const initialState = { data: [] };
@@ -19,6 +19,11 @@ const WineReducer = (state = initialState, action) => {
     case DELETE_WINE :
       return {
         data: state.data.filter(wine => wine.name !== action.name),
+      };
+
+    case SET_WINES:
+      return {
+        data: [action.wines],
       };
 
     default:

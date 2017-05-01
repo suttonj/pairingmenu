@@ -4,12 +4,20 @@ import callApi from '../../util/apiCaller';
 export const ADD_WINE = 'ADD_WINE';
 export const ADD_WINES = 'ADD_WINES';
 export const DELETE_WINE = 'DELETE_WINE';
+export const SET_WINES = 'SET_WINES';
 
 // Export Actions
 export function addWine(wine) {
   return {
     type: ADD_WINE,
     wine,
+  };
+}
+
+export function setWines(wines) {
+  return {
+    type: SET_WINES,
+    wines,
   };
 }
 

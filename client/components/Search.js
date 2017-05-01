@@ -14,8 +14,8 @@ const renderSuggestion = suggestion => (
 );
 
 class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     // Autosuggest is a controlled component.
     // This means that you need to provide an input value
@@ -26,28 +26,23 @@ class Search extends Component {
       value: '',
       suggestions: []
     };
+
+    this.getSuggestions = this.getSuggestions.bind(this);
+    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
   }
 
-  getSuggestions = value => {
+  getSuggestions (value) {
 	  const inputValue = value.trim().toLowerCase();
 	  const inputLength = inputValue.length;
 console.dir(this.props);
 	  return inputLength === 0 ? [] : this.props.data.filter(item =>
 	    item.name.toLowerCase().slice(0, inputLength) === inputValue
 	  );
-	};
+	}
 
   onChange = (event, { newValue }) => {
     this.setState({
       value: newValue
-    });
-  };
-
-  // Autosuggest will call this function every time you need to update suggestions.
-  // You already implemented this logic above, so just use it.
-  onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: this.getSuggestions(value)
     });
   };
 
@@ -57,6 +52,15 @@ console.dir(this.props);
       suggestions: []
     });
   };
+
+  // Autosuggest will call this function every time you need to update suggestions.
+  // You already implemented this logic above, so just use it.
+  onSuggestionsFetchRequested({ value }) {
+    this.setState({
+      suggestions: this.getSuggestions(value)
+    });
+  };
+
 
   render() {
     const { value, suggestions } = this.state;

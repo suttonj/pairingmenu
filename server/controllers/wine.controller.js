@@ -14,7 +14,7 @@ export function getWines(req, res) {
       res.status(500).send(err);
     }
     const retval = wines.map((wine) => {
-    	return { name: wine.name, flavors: wine.flavors };
+    	return { name: wine.name, flavors: wine.flavors, id: wine._id };
     });
     res.json({ wines: retval });
   });

@@ -9,10 +9,11 @@ import Helmet from 'react-helmet';
 import DevTools from './components/DevTools';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Search from '../../components/Search';
+//import Search from '../../components/Search';
+import InputForm from '../../components/InputForm';
 
 // Import Actions
-import { toggleAddPost } from './AppActions';
+import { toggleAddPost, searchWinePairings } from './AppActions';
 import { switchLanguage } from '../../modules/Intl/IntlActions';
 
 export class App extends Component {
@@ -53,13 +54,8 @@ export class App extends Component {
               },
             ]}
           />
-          <Header
-            switchLanguage={lang => this.props.dispatch(switchLanguage(lang))}
-            intl={this.props.intl}
-            toggleAddPost={this.toggleAddPostSection}
-            toggleAddWine={this.toggleAddWineSection}
-          />
-          <Search data={this.props.foods} />
+
+          <InputForm submit={(searchVal) => this.props.dispatch(searchWinePairings(searchVal))}/>
           <div className={styles.container}>
             {this.props.children}
           </div>
@@ -69,7 +65,15 @@ export class App extends Component {
     );
   }
 }
-
+//<Search data={this.props.foods} />
+/*
+<Header
+  switchLanguage={lang => this.props.dispatch(switchLanguage(lang))}
+  intl={this.props.intl}
+  toggleAddPost={this.toggleAddPostSection}
+  toggleAddWine={this.toggleAddWineSection}
+/>
+*/
 App.propTypes = {
   children: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
