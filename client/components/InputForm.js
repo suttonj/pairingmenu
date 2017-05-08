@@ -32,7 +32,7 @@ class InputForm extends Component {
           <FormControl
             type="text"
             value={this.state.value}
-            placeholder="Enter text"
+            placeholder="Enter the food you want to pair with"
             onChange={this.handleChange}
           />
           <FormControl.Feedback />

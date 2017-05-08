@@ -6,7 +6,7 @@ const PairingSuggestions = (MatchesList) => {
 		constructor(props) {
       super(props);
 
-      const defaultItemCount = 100000;
+      const defaultItemCount = 10;
 
       const items = props.suggestions;
 
@@ -14,7 +14,7 @@ const PairingSuggestions = (MatchesList) => {
         itemHeight: 100,
         itemCount: defaultItemCount,
         items: items,
-        contained: false,
+        contained: true,
         containerHeight: 250,
         itemBuffer: 0,
       };
@@ -22,16 +22,20 @@ const PairingSuggestions = (MatchesList) => {
       this.state = state;
 
       this.MatchesVirtualList = VirtualList()(MatchesList);
-    };
+    }
+
+    componentWillUpdate(nextProps) {
+    	console.log("pairing suggestions");
+    }
 
     render() {
       const MatchesVirtualList = this.MatchesVirtualList;
-
+console.log(this.props.suggestions);
       return (
         <div className="row">
           <div className="col-xs-12" id="container" ref="container" style={{ overflow: 'scroll', height: this.state.containerHeight }}>
             <MatchesVirtualList
-              items={this.state.items}
+              items={this.props.suggestions}
               itemBuffer={this.state.itemBuffer}
               itemHeight={this.state.itemHeight}
             />

@@ -23,7 +23,15 @@ export function toggleAddWine() {
 export function searchWinePairings(food) {
   return (dispatch) => {
     return callApi('pairings/' + food).then(res => {
-      dispatch(setWines(res.topWines));
+			const wines = [];
+    	if (res.topWines) {
+    		for (let i in res.topWines) {
+    			let pairingObj = { ...res.topWines[i].wine };
+    			pairingObj.score = res.topWines[i].score;
+    			wines.push(pairingObj);
+    		}
+    	}
+      dispatch(setWines(wines));
     });
   };
 }

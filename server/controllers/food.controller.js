@@ -113,6 +113,10 @@ export function getPairings(req, res) {
     		if (err) {
 		      res.status(500).send(err);
 		    }
+		    if (!wines.length) {
+		    	res.status(400).send();
+		    }
+		    
 		    const wineScores = [];
 
 		    for (let i = 0; i<wines.length; i++ ) {

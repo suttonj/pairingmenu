@@ -23,7 +23,7 @@ const WineReducer = (state = initialState, action) => {
 
     case SET_WINES:
       return {
-        data: [action.wines],
+        data: action.wines,
       };
 
     default:

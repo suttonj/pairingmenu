@@ -1,5 +1,6 @@
 
 export function calculateScore(food, wine) {
+	if (!food.accepts || !wine.attributes) { return null; }
 	const attributesAccepted = food.accepts;
 	const attributes = wine.attributes;
 
