@@ -1,7 +1,40 @@
+html {
+  font-size: 17px;
+  font-family: Arial, sans-serif;
+}
+body {
+  font-size: 100%;
+}
+
+.body {
+	background: #F9F9F9;
+  width: 100%;
+  font-family: Helvetica,sans-serif;
+  line-height: 1.5;
+  color: #111;
+}
+
 .container {
   /*max-width: 980px; */
   width: 100%;
   padding: 15px;
   margin: 0 auto;
   background: #F9F9F9;
+}
+
+.header {
+	text-align: center;
+  background: #fff;
+  box-shadow: 0rem 0.1rem 0.1rem #C1BBBB;
+  display: block;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.content {
+  margin: auto;
+  margin-top: 20px;
+  max-width: 1200px;
+  min-width: 320px;
+  width: 100%;
 }

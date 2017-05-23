@@ -38,7 +38,7 @@ export class App extends Component {
     return (
       <div>
         {this.state.isMounted && !window.devToolsExtension && process.env.NODE_ENV === 'development' && <DevTools />}
-        <div>
+        <div class={styles.body}>
           <Helmet
             title="Pairing Menu"
             titleTemplate="%s - Pairing Menu"
@@ -55,11 +55,14 @@ export class App extends Component {
             ]}
           />
 
-          <InputForm submit={(searchVal) => this.props.dispatch(searchWinePairings(searchVal))}/>
           <div className={styles.container}>
-            {this.props.children}
+            <div className={styles.header}>
+              <InputForm submit={(searchVal) => this.props.dispatch(searchWinePairings(searchVal))}/>
+            </div>
+            <div className={styles.content}>
+              {this.props.children}
+            </div>
           </div>
-          
         </div>
       </div>
     );
